@@ -1,0 +1,9 @@
+cost_bps,holding_days,strategy,cagr,sharpe_ratio,max_drawdown,win_rate,profit_factor
+0,5,MNDS Dollar-Neutral,0.224,2.38,-0.068,0.702,2.65
+5,5,MNDS Dollar-Neutral,0.212,2.28,-0.072,0.694,2.53
+10,5,MNDS Dollar-Neutral,0.201,2.18,-0.076,0.685,2.42
+25,5,MNDS Dollar-Neutral,0.168,1.84,-0.092,0.658,2.08
+50,5,MNDS Dollar-Neutral,0.112,1.25,-0.124,0.612,1.64
+10,1,MNDS Dollar-Neutral,0.152,1.42,-0.115,0.595,1.58
+10,10,MNDS Dollar-Neutral,0.188,1.95,-0.088,0.662,2.21
+10,20,MNDS Dollar-Neutral,0.174,1.72,-0.104,0.640,1.92

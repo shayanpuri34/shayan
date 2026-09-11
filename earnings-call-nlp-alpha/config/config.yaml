@@ -1,0 +1,80 @@
+# Earnings-Call NLP Alpha Engine Configuration
+project:
+  name: "Earnings-Call NLP Alpha Engine"
+  version: "1.0.0"
+  random_seed: 42
+  run_mode: "DEMO" # Options: DEMO, FULL
+
+universe:
+  primary:
+    - AAPL
+    - MSFT
+    - AMZN
+    - GOOGL
+    - META
+    - NVDA
+    - JPM
+    - BAC
+    - XOM
+    - CVX
+    - WMT
+    - COST
+  benchmark: "SPY"
+  start_year: 2023
+  end_year: 2025
+
+data:
+  raw_transcripts_dir: "data/raw/transcripts"
+  processed_dir: "data/processed"
+  embeddings_dir: "data/embeddings"
+  cache_enabled: true
+  api:
+    timeout_seconds: 30
+    max_retries: 4
+    backoff_factor: 1.5
+
+nlp:
+  sentiment_model: "dictionary" # dictionary or finbert
+  embedding_model: "tfidf" # tfidf or sentence-transformers
+  topic_model: "nmf" # nmf or bertopic
+  num_topics: 15
+  uncertainty_lexicon: "loughran_mcdonald"
+  min_sentence_length: 5
+
+mnds:
+  description: "Management Narrative Delta Score weights"
+  weights:
+    w1_sentiment_delta: 0.20
+    w2_uncertainty_delta: 0.20
+    w3_narrative_shock: 0.15
+    w4_topic_delta: 0.15
+    w5_confidence_delta: 0.15
+    w6_qa_divergence: 0.15
+  standardize_method: "cross_sectional_zscore"
+
+event_study:
+  estimation_window: [-252, -30]
+  event_windows:
+    - [-1, 1]
+    - [0, 1]
+    - [0, 5]
+    - [0, 20]
+  market_model: "OLS"
+
+ml:
+  target_horizon: 5 # trading days
+  models:
+    - "logistic_regression"
+    - "random_forest"
+    - "gradient_boosting"
+  cv_splits: 5
+  time_aware_split: true
+
+portfolio:
+  max_position_size: 0.02
+  max_gross_exposure: 1.00
+  long_threshold_percentile: 0.80
+  short_threshold_percentile: 0.20
+  holding_periods: [1, 5, 10, 20]
+  transaction_costs_bps: [0, 5, 10, 25, 50]
+  default_cost_bps: 10

@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+*$py.class
+.ipynb_checkpoints/
+.env
+data/raw/*
+!data/raw/.gitkeep
+data/embeddings/*
+!data/embeddings/.gitkeep
+logs/*
+!logs/.gitkeep
+.DS_Store
+*.egg-info/
+dist/
+build/
